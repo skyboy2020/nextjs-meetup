@@ -1,4 +1,80 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+pages/index.js              getStaticProps getServerSideProps 使用
+pages/[meetupId]/index.js   getStaticPaths feedback参数 使用
+
+getServerSideProps 更好还是 getStaticProps 更好？
+
+getServerSideProps 可能听起来更好
+
+因为它保证为每个请求运行。
+
+但这实际上可能是一个缺点，
+
+因为这意味着你需要等待你的页面
+
+在每个传入的请求上生成。
+
+现在，如果你没有一直在变化的数据，
+
+有了这个，我的意思是
+
+它每秒更改多次。
+
+如果您不需要访问请求对象，
+
+假设进行身份验证，
+
+getStaticProps 实际上更好。
+
+因为您在那里预先生成了一个 HTML 文件，
+
+然后可以通过 CDN 存储和提供该文件。
+
+这简直比再生更快
+
+并为每个传入请求获取该数据。
+
+所以你的页面在工作时会更快
+
+使用 getStaticProps，因为那样它可以被缓存
+
+并重复使用，而不是一直重新生成。
+
+因此，你真的应该只使用 getServerSideProps
+
+如果您需要访问该具体请求对象，
+
+因为你无权请求
+
+并在 getStaticProps 中响应。
+
+或者如果你真的有数据
+
+每秒变化多次，
+
+那么因此即使重新验证也无济于事，
+
+那么 getServerSideProps 是一个不错的选择。
+
+不过，现在这里是我们的聚会清单，
+
+这不是一个很好的选择，因为那不是数据，
+
+经常变化。
+
+在这里我也不需要工作
+
+与传入的请求。
+
+因此，我将再次评论 getServerSideprops，
+
+并评论 getStaticProps 。
+
+因为这样，我们可以利用缓存
+
+而且我们不会多次重新生成页面，
+
+不必要的。
 
 ## Getting Started
 
